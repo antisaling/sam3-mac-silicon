@@ -59,41 +59,25 @@ This breakthrough is driven by an innovative data engine that has automatically 
 
 ### Prerequisites
 
-- Python 3.12 or higher
+- Python 3.9 or higher
 - PyTorch 2.7 or higher
-- CUDA-compatible GPU with CUDA 12.6 or higher
+<!-- - CUDA-compatible GPU with CUDA 12.6 or higher -->
 
-1. **Create a new Conda environment:**
-
-```bash
-conda create -n sam3 python=3.12
-conda deactivate
-conda activate sam3
+```sh
+# this will take a WHILE
+git -C .. clone https://github.com/triton-lang/triton && uv build ../triton
+uv sync
+uv pip install ../triton/dist/*.whl
+uv run python -c "import sam3; print('SAM3 installed successfully!')"
 ```
 
-2. **Install PyTorch with CUDA support:**
-
-```bash
-pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-```
-
-3. **Clone the repository and install the package:**
-
-```bash
-git clone https://github.com/facebookresearch/sam3.git
-cd sam3
-pip install -e .
-```
-
-4. **Install additional dependencies for example notebooks or development:**
-
-```bash
-# For running example notebooks
-pip install -e ".[notebooks]"
-
-# For development
-pip install -e ".[train,dev]"
-```
+<!-- ```bash -->
+<!-- # For running example notebooks -->
+<!-- pip install -e ".[notebooks]" -->
+<!---->
+<!-- # For development -->
+<!-- pip install -e ".[train,dev]" -->
+<!-- ``` -->
 
 ## Getting Started
 
@@ -337,8 +321,8 @@ We release 2 image benchmarks, [SA-Co/Gold](scripts/eval/gold/README.md) and
 [SA-Co/Silver](scripts/eval/silver/README.md), and a video benchmark
 [SA-Co/VEval](scripts/eval/veval/README.md). The datasets contain images (or videos) with annotated noun phrases. Each image/video and noun phrase pair is annotated with instance masks and unique IDs of each object matching the phrase. Phrases that have no matching objects (negative prompts) have no masks, shown in red font in the figure. See the linked READMEs for more details on how to download and run evaluations on the datasets.
 
-* HuggingFace host: [SA-Co/Gold](https://huggingface.co/datasets/facebook/SACo-Gold), [SA-Co/Silver](https://huggingface.co/datasets/facebook/SACo-Silver) and [SA-Co/VEval](https://huggingface.co/datasets/facebook/SACo-VEval)
-* Roboflow host: [SA-Co/Gold](https://universe.roboflow.com/sa-co-gold), [SA-Co/Silver](https://universe.roboflow.com/sa-co-silver) and [SA-Co/VEval](https://universe.roboflow.com/sa-co-veval)
+- HuggingFace host: [SA-Co/Gold](https://huggingface.co/datasets/facebook/SACo-Gold), [SA-Co/Silver](https://huggingface.co/datasets/facebook/SACo-Silver) and [SA-Co/VEval](https://huggingface.co/datasets/facebook/SACo-VEval)
+- Roboflow host: [SA-Co/Gold](https://universe.roboflow.com/sa-co-gold), [SA-Co/Silver](https://universe.roboflow.com/sa-co-silver) and [SA-Co/VEval](https://universe.roboflow.com/sa-co-veval)
 
 ![SA-Co dataset](assets/sa_co_dataset.jpg?raw=true)
 

@@ -7,11 +7,9 @@ name = "sam3"
 dynamic = ["version"]
 description = "SAM3 (Segment Anything Model 3) implementation"
 readme = "README.md"
-requires-python = ">=3.8"
-license = {file = "LICENSE"}
-authors = [
-    {name = "Meta AI Research"}
-]
+requires-python = ">=3.9,<3.13"
+license = { file = "LICENSE" }
+authors = [{ name = "Meta AI Research" }]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
@@ -33,6 +31,10 @@ dependencies = [
     "iopath>=0.1.10",
     "typing_extensions",
     "huggingface_hub",
+    "einops>=0.8.1",
+    "pycocotools>=2.0.11",
+    "psutil>=7.2.1",
+    "decord2>=3.0.0",
 ]
 
 [project.optional-dependencies]
@@ -59,7 +61,6 @@ notebooks = [
     "ipycanvas",
     "ipympl",
     "pycocotools",
-    "decord",
     "opencv-python",
     "einops",
     "scikit-image",
@@ -82,15 +83,11 @@ train = [
 "Homepage" = "https://github.com/facebookresearch/sam3"
 "Bug Tracker" = "https://github.com/facebookresearch/sam3/issues"
 
-[tool.setuptools.packages.find]
-include = ["sam3*"]
-exclude = ["build*", "scripts*", "examples*"]
-
-[tool.setuptools.package-data]
-sam3 = ["assets/*.txt.gz"]
+[tool.setuptools]
+packages = ["sam3", "sam3.model"]
 
 [tool.setuptools.dynamic]
-version = {attr = "sam3.__version__"}
+version = { attr = "sam3.__version__" }
 
 [tool.black]
 line-length = 88
